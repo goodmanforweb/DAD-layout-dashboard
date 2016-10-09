@@ -8,10 +8,14 @@ In order to run it locally you'll need a basic server setup.
 
 ## Development environment:
 npm install  --install dependencies
+
 npm start --start webpack server
+
 npm test --start test
+
 localhost:3000
 
 ## Production environment:
 npm install  --install dependencies
+
 npm run build --pack compile compress
