@@ -1,0 +1,1 @@
+cmd cd C:\Users\Administrator\Desktop\fine-reactUI\dashboard

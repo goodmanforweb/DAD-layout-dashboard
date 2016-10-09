@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.widgetCheckBox, .widgetRadio, .widgetDate, .placeholderText{
+	width: 100%;
+	min-height: 30px;
+	box-sizing: border-box;
+	border: 0px dashed #CACACA;
+}
+.widgetCheckBox:hover, .widgetRadio:hover, .widgetDate:hover, .placeholderText:hover{
+    border: 1px dashed #CACACA;
+    transition: all .1s linear;
+}
