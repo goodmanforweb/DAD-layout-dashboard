@@ -69,17 +69,18 @@ module.exports = {
       },
     module: {
 
-        preLoaders: [
+       preLoaders: [
           {
             test: /\.jsx?$/,
-            exclude: /node_modules/,
+            exclude: /(public|node_modules)/,
             loader: 'eslint-loader'
           }
         ],
+        noParse: /node_modules\/json-schema\/lib\/validate\.js/,
         loaders: [
             {
               test: /\.(es6|js)$/,
-              exclude: /node_modules/,
+              exclude: /(public|node_modules)/,
               loaders: ['babel-loader', 'eslint-loader']
             },
             {
@@ -88,17 +89,18 @@ module.exports = {
                 exclude:/(node_modules)/,
                 query:{
                     presets:['react','es2015']
-                }                
+                }
             },
-            {test: /\.(png|jpg|svg)$/, loader: "url-loader?limit=8192&name=/images/[hash:8].[name].[ext]"},
-            {test: /\.(ttf|woff|eot)$/, loader: "url-loader?limit=8192&name=/fonts/[hash:8].[name].[ext]"},
+            {test:/\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
+            // inline base64 URLs for <=8k images, direct URLs for the rest
+            {test: /\.(png|jpg|ttf|woff|svg|eot)$/, loader: 'url-loader'},
             {
                 test: /\.(scss|sass)$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass?sourceMap'
             },
             {
                 test: /\.ts$/,
-                exclude: /(lib|node_modules)/,
+                exclude: /(public|node_modules)/,
                 loader: 'typescript-simple',
                 query: {
                     'ignoreWarnings': [
@@ -108,8 +110,7 @@ module.exports = {
                         2432  // 2432 -> In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.
                     ]
                 }
-            },
-            {test:/\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
+            }
         ]
     },
     postcss() {
