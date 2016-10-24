@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+
 import DoardMenu from '../Components/DoardMenu';
 import WidgetMain from '../Components/WidgetMain';
 import '../../style/Views/App';
@@ -25,6 +26,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div className = "dashboardBox">
         <DoardMenu />

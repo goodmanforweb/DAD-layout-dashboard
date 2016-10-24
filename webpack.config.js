@@ -69,7 +69,7 @@ module.exports = {
       },
     module: {
 
-       preLoaders: [
+        preLoaders: [
           {
             test: /\.jsx?$/,
             exclude: /(public|node_modules)/,

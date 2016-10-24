@@ -2,14 +2,13 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import Root from './js/Views/Root';
-// import { browserHistory } from 'react-router';
-// import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route, browserHistory } from 'react-router';
 
-// const store = configureStore();
-// const history = syncHistoryWithStore(browserHistory, store);
+import App from './js/Views/App';
 
 render(
-  <Root />,
+  <Router history = {browserHistory}>
+    <Route path = "/" component={App} />
+  </Router>,
   document.querySelector('#xdtDashboard')
 );

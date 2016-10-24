@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
 .boardMenu{
-	width: 20%;
+	width:20%;
+	min-width: 80px;
 	height: 100%;
 	float: left;
 	background:#F3F3F3;
-	overflow-y: auto;
+	overflow-x: auto;
 	z-index: 10;
 }
 .menuItem{

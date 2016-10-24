@@ -4,9 +4,17 @@ import baseComponent from './BaseComponent';
 
 export default class RadioComponent extends baseComponent {
   template() {
+    let randomNum = new Date().getTime();
+
     return (
-      '<div class = "widgetRadio">' +
-        '<input type = "radio">name' +
+      '<div class = "widgetChild">' +
+        '<div class = "widgetContainer">' +
+          '<div class = "widgetRadio">' +
+            '<input type = "radio">name' +
+          '</div>' +
+        '</div>' +
+        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetAction"></div>' +
       '</div>'
     );
   }

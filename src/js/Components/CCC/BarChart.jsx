@@ -37,12 +37,14 @@ function bar(node) {
     height: 400,
     orientation: 'horizontal',
     crosstabMode: false,
-    valuesVisible: false,
     axisLabel_font: 'normal 10px "Open Sans"',
-    bar_fillStyle: '#005CA7',
-    animate: false,
+    colors: '#005CA7',
     selectable: true,
-    hoverable: true
+    hoverable: true,
+    valuesVisible: true,
+    animate: true,
+    legendPosition: 'left',
+    legend: true
   })
 .setData(relational)
 .render();

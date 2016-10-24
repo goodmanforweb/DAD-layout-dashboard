@@ -72,7 +72,7 @@ class DoardMenu extends React.Component {
             <div className = "reportContent Content">
                 <div className = "menuItemBox">
                     <span className = "menuItem report1"
-                      data-type = "dataPlugin"
+                      data-type = "olapChart"
                       draggable = "true"
                       onDragStart = {this.drag}/>
                     <span>

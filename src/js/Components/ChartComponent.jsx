@@ -1,8 +1,10 @@
+
 import bar from './CCC/BarChart';
 import barLine from './CCC/BarLineChart';
 import bullet from './CCC/BulletChart';
 import line from './CCC/LineChart';
 import stackedBar from './CCC/StackedBarChart';
+import OlapChartsRenderer from './OlapChart';
 
 function ChartComponent(option, node) {
   let chartType = {
@@ -20,6 +22,11 @@ function ChartComponent(option, node) {
     },
     stackedBarChart() {
       stackedBar(node);
+    },
+    olapChart() {
+      let OlapCharts = new OlapChartsRenderer();
+
+      OlapCharts.switchChart();
     }
   };
 

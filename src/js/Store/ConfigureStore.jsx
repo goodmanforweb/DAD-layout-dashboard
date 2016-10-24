@@ -1,22 +1,23 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import rootReducer from '../reducers';
 
-export default function configureStore(preloadedState) {
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(thunkMiddleware, createLogger())
-  )
+import { createStore, applyMiddleware } from 'redux';
+
+import { logger } from '../Middleware';
+import rootReducer from '../Reducers';
+
+export default function configureStore(initialState) {
+  const create = window.devToolsExtension ?
+   window.devToolsExtension()(createStore) : createStore;
+  const createStoreWithMiddleware = applyMiddleware(
+    logger
+  )(create);
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
   if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+    module.hot.accept('../Reducers', () => {
+      const nextReducer = require('../Reducers');
 
-  return store
+      store.replaceReducer(nextReducer);
+    });
+  }
+  return store;
 }

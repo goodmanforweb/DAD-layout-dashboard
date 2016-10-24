@@ -7,6 +7,7 @@
 	border: 0px dashed #CACACA;
 }
 .widgetCheckBox:hover, .widgetRadio:hover, .widgetDate:hover, .placeholderText:hover{
+    box-sizing: border-box;
     border: 1px dashed #CACACA;
     transition: all .1s linear;
 }
