@@ -1,4 +1,4 @@
-# drag and drop Dashboard
+# Drag and drop dashboard
 
 A dashboard for writing React Apps based ECMAScript 2015 (ES6) app using webpack and more.
 
