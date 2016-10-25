@@ -9,24 +9,24 @@ import OlapChartsRenderer from './OlapChart';
 function ChartComponent(option, node) {
   let chartType = {
     barChart() {
-      bar(node);
+      return bar(node);
     },
     lineBarChart() {
-      barLine(node);
+      return barLine(node);
     },
     bulletChart() {
-      bullet(node);
+      return bullet(node);
     },
     lineChart() {
-      line(node);
+      return line(node);
     },
     stackedBarChart() {
-      stackedBar(node);
+      return stackedBar(node);
     },
     olapChart() {
       let OlapCharts = new OlapChartsRenderer();
 
-      OlapCharts.switchChart();
+      return OlapCharts.switchChart();
     }
   };
 

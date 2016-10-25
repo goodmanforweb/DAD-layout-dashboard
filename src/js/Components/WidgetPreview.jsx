@@ -37,6 +37,14 @@ class WidgetPreview extends Component {
     if (document.querySelector('.waterMark')) {
       $('.waterMark').remove();
       $('.widgetPreview').append(this.layoutDom(dataType));
+      let child = target[0].childNodes[0].childNodes;
+
+      for (let s = 0; s < child.length; s++) {
+        let name = (child[s].className).split(' ')[1];
+
+        (child[s].className).indexOf('widgetConfig') > -1 ?
+          WidgetConfig(dataType, name) : null;
+      }
       if (dataType.indexOf('Chart') >= 0) {
         ChartComponent(dataType, ['.columnOne']);
       }
@@ -48,14 +56,6 @@ class WidgetPreview extends Component {
 
         widgetComponent(args);
       }
-      let child = target[0].childNodes[0].childNodes;
-
-      for (let s = 0; s < child.length; s++) {
-        let name = (child[s].className).split(' ')[1];
-
-        (child[s].className).indexOf('widgetConfig') > -1 ?
-          WidgetConfig(dataType, name) : null;
-      }
     }
     else if (dataType.indexOf('Chart') >= 0) {
       let childNodeList = [];
@@ -63,13 +63,14 @@ class WidgetPreview extends Component {
       target.html(this.layoutDom('gridOne'));
       let targetChild = target[0].childNodes[target[0].childNodes.length - 1];
 
-      ChartComponent(dataType, targetChild.childNodes);
       for (let n = 0; n < targetChild.childNodes.length; n++) {
         let name = (targetChild.childNodes[n].className).split(' ')[1];
 
         (targetChild.childNodes[n].className).indexOf('widgetConfig') > -1 ?
           WidgetConfig(dataType, name) : null;
       }
+      ChartComponent(dataType, targetChild.childNodes);
+      console.log(ChartComponent(dataType, targetChild.childNodes));
       target[0].className === 'widgetPreview' ?
         null : childNodeList = target[0].parentNode.childNodes;
       for (let l = 0;l < childNodeList.length;l++) {
@@ -91,7 +92,6 @@ class WidgetPreview extends Component {
       }
     }
     else {
-      widgetComponent(options);
       let targetChild = target[0].childNodes[target[0].childNodes.length - 1];
 
       for (let n = 0; n < targetChild.childNodes.length; n++) {
@@ -100,6 +100,7 @@ class WidgetPreview extends Component {
         (targetChild.childNodes[n].className).indexOf('widgetConfig') > -1 ?
           WidgetConfig(dataType, name) : null;
       }
+      widgetComponent(options);
     }
   }
 

@@ -1,6 +1,24 @@
+import $ from 'jquery';
 import pvc from '../../public/pvc';
 
 function bar(node) {
+  let data = {
+    canvas: node[0],
+    width: 500,
+    height: 400,
+    orientation: 'horizontal',
+    crosstabMode: false,
+    axisLabel_font: 'normal 10px "Open Sans"',
+    colors: '#005CA7',
+    selectable: true,
+    hoverable: false,
+    valuesVisible: false,
+    animate: false,
+    legendPosition: 'left',
+    legend: true,
+    stacked: false,
+    clickable: false
+  };
   let relational = {
     'resultset': [
       ['London', 74],
@@ -31,23 +49,19 @@ function bar(node) {
     }]
   };
 
-  new pvc.BarChart({
-    canvas: node[0],
-    width: 500,
-    height: 400,
-    orientation: 'horizontal',
-    crosstabMode: false,
-    axisLabel_font: 'normal 10px "Open Sans"',
-    colors: '#005CA7',
-    selectable: true,
-    hoverable: true,
-    valuesVisible: true,
-    animate: true,
-    legendPosition: 'left',
-    legend: true
-  })
-.setData(relational)
-.render();
+  new pvc.BarChart(data)
+  .setData(relational)
+  .render();
+  $('.configSection input').on('change', (ev)=>{
+    ev.target.className === 'true' || ev.target.className === 'false' ?
+      data[ev.target.name] = JSON.parse(ev.target.className) :
+      data[ev.target.name] = ev.target.className;
+    new pvc.BarChart(data)
+    .setData(relational)
+    .render();
+  });
+
+  return data;
 }
 
 module.exports = bar;

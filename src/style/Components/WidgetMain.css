@@ -3,4 +3,30 @@
 	height: 99%;
 	float: left;
 	position: relative;
+	.footer{
+		width: 80%;
+		height: 60px;
+		position: fixed;
+		bottom: 0;
+		left: 20%;
+		background-color: #fff;
+		box-shadow: 1px 1px 10px #ccc;
+		text-align: right;
+		z-index: 1000;
+		input{
+			margin: 20px 40px 0 0;
+			width: 80px;
+			height: 20px;
+			border: none;
+			font-size: 12px;
+		}
+		input:nth-child(1){
+			background-color: #F0F0F0;
+			color: #000;
+		}
+		input:nth-child(2){
+			background-color: #1288EB;
+			color: #fff;
+		}
+	}
 }
