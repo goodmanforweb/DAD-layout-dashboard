@@ -53,7 +53,7 @@ module.exports = {
     noParse: /node_modules\/json-schema\/lib\/validate\.js/,
     entry: {
         index : SRC,
-        common :['react','react-dom','react-router','react-redux','redux']
+        common :['react','react-dom','react-router']
     },
     output: {
         path: BUILD,
