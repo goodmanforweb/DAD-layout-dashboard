@@ -10,10 +10,14 @@ Download and install nodejs.
 
 ## Development environment:
 npm install  (install dependencies)
+
 npm start (start webpack server)
+
 npm test (start test)
+
 localhost:3000
 
 ## Production environment:
-npm install  (install dependencies)
+npm install (install dependencies)
+
 npm run build (pack compile compress)
