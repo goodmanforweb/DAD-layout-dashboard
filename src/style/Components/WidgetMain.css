@@ -3,6 +3,7 @@
 	height: 99%;
 	float: left;
 	position: relative;
+	/*overflow: auto;*/
 	.footer{
 		width: 80%;
 		height: 60px;
@@ -28,5 +29,8 @@
 			background-color: #1288EB;
 			color: #fff;
 		}
+	}
+	.formHidden{
+		display: none;
 	}
 }

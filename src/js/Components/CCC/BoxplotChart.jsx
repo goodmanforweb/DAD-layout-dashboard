@@ -2,7 +2,7 @@ import pvc from '../../public/pvc';
 
 new pvc.BoxplotChart({
     canvas: 'cccBoxExample3',
-    width:  600,
+    width:  node[0].clientWidth,
     height: 400,
 
     // Main plot

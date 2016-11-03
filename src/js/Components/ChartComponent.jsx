@@ -6,22 +6,22 @@ import line from './CCC/LineChart';
 import stackedBar from './CCC/StackedBarChart';
 import OlapChartsRenderer from './OlapChart';
 
-function ChartComponent(option, node) {
+function ChartComponent(args) {
   let chartType = {
     barChart() {
-      return bar(node);
+      return bar(args);
     },
     lineBarChart() {
-      return barLine(node);
+      return barLine(args);
     },
     bulletChart() {
-      return bullet(node);
+      return bullet(args);
     },
     lineChart() {
-      return line(node);
+      return line(args);
     },
     stackedBarChart() {
-      return stackedBar(node);
+      return stackedBar(args);
     },
     olapChart() {
       let OlapCharts = new OlapChartsRenderer();
@@ -30,6 +30,6 @@ function ChartComponent(option, node) {
     }
   };
 
-  return chartType[option] ? chartType[option]() : null;
+  return chartType[args.option] ? chartType[args.option]() : null;
 }
 module.exports = ChartComponent;

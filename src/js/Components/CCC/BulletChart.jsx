@@ -1,6 +1,7 @@
 import pvc from '../../public/pvc';
 
-export default function bullet(node) {
+export default function bullet(option) {
+  let configData = null;
   let bullet_NameValueMarker = {
     resultset: [
       ['Europe', 800, 300],
@@ -22,9 +23,9 @@ export default function bullet(node) {
     }]
   };
 
-  new pvc.BulletChart({
-    canvas: node[0],
-    width: 600,
+  option.chartData ? configData = option.chartData : configData = {
+    canvas: option.node[0],
+    width: option.node[0].clientWidth - 1,
     height: 400,
     orientation: 'horizontal',
     bulletSize: 25,
@@ -37,7 +38,14 @@ export default function bullet(node) {
     bulletSubtitle: 'Fixed Sub-title',
     bulletSubtitle_font: 'normal 10px "Open Sans"',
     bulletRanges: [200, 500, 1000]
-  })
+  };
+  new pvc.BulletChart(configData)
   .setData(bullet_NameValueMarker)
   .render();
+  let chartConfig = {
+    configData: configData,
+    dataSource: bullet_NameValueMarker
+  };
+
+  return chartConfig;
 }

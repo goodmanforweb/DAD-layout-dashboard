@@ -34,9 +34,9 @@
 		display:inline-block;
 		margin-right: 20px;
 	}
-	.titleProperty>input{
+	.titleProperty input[type="text"]{
 		display:inline-block;
-		width: 100px;
+		width: 160px;
 	}
 	.titleProperty>div{
 		margin-bottom: 10px;

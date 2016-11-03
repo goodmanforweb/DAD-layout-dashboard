@@ -14,74 +14,72 @@ class BarConfig {
       '<div class="titleProperty">' +
       '<h3>标题属性</h3>' +
       '<div>' +
-      '<span>标题</span><input type="text" class="titleContent" placeholder=""/>' +
+      '<span>标题</span><input type="text" name="titleContent" placeholder="请输入"/>' +
       '</div>' +
       '<div>' +
       '<span>标题位置</span>' +
-      '<label><input name="titleLocation" type="radio" class=""/>左</label>' +
-      '<label><input name="titleLocation" type="radio" class=""/>中</label>' +
-      '<label><input name="titleLocation" type="radio" class=""/>右</label>' +
+      '<label><input type="radio" name="headlines" value="left"/>左</label>' +
+      '<label><input type="radio" name="headlines" value="center"/>中</label>' +
+      '<label><input type="radio" name="headlines" value="right"/>右</label>' +
       '</div>' +
       '</div>' +
       '<div class="dataSource">' +
       '<h3>数据来源</h3>' +
       '<span>选择查询</span>' +
-      '<select>' +
-      '<option value="">sqlquery</option>' +
-      '<option value="">多维模型</option>' +
-      '<option value="">关系模型</option>' +
+      '<select class="data">' +
+      '<option value="dataSource">sqlquery</option>' +
+      '<option value="dataSource">mdxquery</option>' +
+      '<option value="dataSource">创建新查询</option>' +
       '</select>' +
       '</div>' +
       '<div class="chartProperty">' +
       '<h3>图表属性</h3>' +
       '<div>' +
       '<span>方向</span>' +
-      '<label><input type="radio" name="orientation" class="vertical"/>纵向</label>' +
-      '<label><input type="radio" name="orientation" class="horizontal"/>横向</label>' +
+      '<label><input type="radio" name="orientation" value="vertical"/>纵向</label>' +
+      '<label><input type="radio" name="orientation" value="horizontal" checked/>横向</label>' +
       '</div>' +
       '<div>' +
       '<span>动效</span>' +
-      '<label><input type="radio" name="animate" class="true"/>是</label>' +
-      '<label><input type="radio" name="animate" class="false"/>否</label>' +
+      '<label><input type="radio" name="animate" value="true"/>是</label>' +
+      '<label><input type="radio" name="animate" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>鼠标悬停效果</span>' +
-      '<label><input type="radio" name="hoverable" class="true"/>是</label>' +
-      '<label><input type="radio" name="hoverable" class="false"/>否</label>' +
+      '<label><input type="radio" name="hoverable" value="true"/>是</label>' +
+      '<label><input type="radio" name="hoverable" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>图例</span>' +
-      '<label><input type="radio" name="legend" class="true"/>是</label>' +
-      '<label><input type="radio" name="legend" class="false"/>否</label>' +
+      '<label><input type="radio" name="legend" value="true"/>是</label>' +
+      '<label><input type="radio" name="legend" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>图例位置</span>' +
-      '<label><input type="radio" name="legendPosition" class="top"/>上</label>' +
-      '<label><input type="radio" name="legendPosition" class="bottom"/>下</label>' +
-      '<label><input type="radio" name="legendPosition" class="left"/>左</label>' +
-      '<label><input type="radio" name="legendPosition" class="right"/>右</label>' +
+      '<label><input type="radio" name="legendPosition" value="top"/>上</label>' +
+      '<label><input type="radio" name="legendPosition" value="bottom"/>下</label>' +
+      '<label><input type="radio" name="legendPosition" value="left"/>左</label>' +
+      '<label><input type="radio" name="legendPosition" value="right"/>右</label>' +
       '</div>' +
       '<div>' +
       '<span>显示度量值</span>' +
-      '<label><input type="radio" name="valuesVisible" class="true"/>是</label>' +
-      '<label><input type="radio" name="valuesVisible" class="false"/>否</label>' +
+      '<label><input type="radio" name="valuesVisible" value="true"/>是</label>' +
+      '<label><input type="radio" name="valuesVisible" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>显示网络线</span>' +
-      '<label><input type="radio" name="axisGrid" class="false"/>否</label>' +
-      '<label><input type="radio" name="axisGrid" class="horizontal"/>横向</label>' +
-      '<label><input type="radio" name="axisGrid" class="vertical"/>纵向</label>' +
-      '<label><input type="radio" name="axisGrid" class="true"/>全部</label>' +
+      '<label><input type="radio" name="axisGrid" value="true" checked/>是</label>' +
+      '<label><input type="radio" name="axisGrid" value="false"/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>堆叠显示</span>' +
-      '<label><input type="radio" name="stacked" class="true"/>是</label>' +
-      '<label><input type="radio" name="stacked" class="false"/>否</label>' +
+      '<label><input type="radio" name="stacked" value="true"/>是</label>' +
+      '<label><input type="radio" name="stacked" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>可点击</span>' +
-      '<label><input type="radio" name="clickable" class="true"/>是</label>' +
-      '<label><input type="radio" name="clickable" class="false"/>否</label>' +
+      '<label><input type="radio" name="clickable" value="true"/>是</label>' +
+      '<label><input type="radio" name="clickable" value="false" checked/>否</label>' +
       '</div>' +
       '<div>' +
       '<span>点击动作</span>' +

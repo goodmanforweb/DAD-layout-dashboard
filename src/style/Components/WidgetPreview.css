@@ -5,7 +5,8 @@
 	height: 100%;
   z-index: 1;
   padding:10px 0 0 10px;
-  margin-left: 25%;
+  margin: 0 0 65px 25%;
+  background: url('../../images/drop.png') no-repeat 50% 50%; 
 }
 .waterMark{
   top: center;
@@ -63,6 +64,9 @@
     cursor: pointer;
     z-index: 1;
   }
+  .widgetContainer{
+    width: 100%;
+  }
 }
 .d3-tip{
   font-weight: normal;
@@ -86,4 +90,14 @@
   content: "\25BC";
   position: absolute;
   text-align: center;
+}
+.columnOne table{
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-collapse:collapse;
+}
+.columnOne td{
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  padding-left:10px;
 }

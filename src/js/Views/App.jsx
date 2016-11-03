@@ -18,7 +18,7 @@ class App extends React.Component {
     let height = $(window).height();
     let dashboardBox = document.querySelector('.dashboardBox');
 
-    dashboardBox.style.height = height - 5 + 'px';
+    dashboardBox.style.height = height - 75 + 'px';
   }
 
   componentDidMount() {
@@ -26,7 +26,6 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <div className = "dashboardBox">
         <DoardMenu />

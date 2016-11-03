@@ -218,5 +218,4 @@ class DoardMenu extends React.Component {
 	);
   }
 }
-
 export default DoardMenu;

@@ -1,4 +1,5 @@
 import '../../style/Components/WidgetComponent';
+import TableComponent from './TableComponent';
 import TextComponent from './TextComponent';
 import CheckBoxComponent from './CheckComponent';
 import RadioComponent from './RadioComponent';
@@ -16,6 +17,9 @@ export default function widgetComponent(options) {
       console.log('query');
     },
     table() {
+      let tableWidget = new TableComponent();
+
+      tableWidget.initialize(options.node);
       console.log('table');
     },
     checkBox() {

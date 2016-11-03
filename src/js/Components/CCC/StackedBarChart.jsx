@@ -1,6 +1,7 @@
 import pvc from '../../public/pvc';
 
-export default function stackedBar(node) {
+export default function stackedBar(option) {
+  let configData = null;
   let relational_01 = {
     resultset: [
       ['London', '2011-06-05', 72],
@@ -43,9 +44,9 @@ export default function stackedBar(node) {
     }]
   };
 
-  new pvc.BarChart({
-    canvas: node[0],
-    width: 600,
+  option.chartData ? configData = option.chartData : configData = {
+    canvas: option.node[0],
+    width: option.node[0].clientWidth - 1,
     height: 400,
     // Data source
     crosstabMode: false,
@@ -80,7 +81,16 @@ export default function stackedBar(node) {
     colors: [
       '#005CA7', '#FFC20F', '#333333'
     ]
-  })
+  };
+
+  new pvc.BarChart(configData)
   .setData(relational_01)
   .render();
+
+  let chartConfig = {
+    configData: configData,
+    dataSource: relational_01
+  };
+
+  return chartConfig;
 }

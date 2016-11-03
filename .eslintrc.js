@@ -25,7 +25,7 @@ module.exports = {
             "modules": true
         }
     },
-     "globals": {
+    "globals": {
     "document": false,
     "escape": false,
     "navigator": false,
@@ -43,7 +43,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-    "block-scoped-var": 2,
+    "block-scoped-var": 0,
     "brace-style": [2, "stroustrup"],
     // "camelcase": [1, { "properties": "always" }],
     "comma-dangle": [2, "never"],
@@ -205,7 +205,7 @@ module.exports = {
     "use-isnan": 2,
     "valid-jsdoc": 0,
     "valid-typeof": 2,
-    "vars-on-top": 2,
+    "vars-on-top": 0,
     "wrap-iife": [2, "any"],
     "wrap-regex": 0,
     "yoda": [2, "never"]

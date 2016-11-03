@@ -8,6 +8,7 @@ import App from './js/Views/App';
 
 render(
   <Router history = {browserHistory}>
+    <Route path = "/newDashboard" component={App} />
 	<Route path = "/" component={App} />
   </Router>,
   document.querySelector('#xdtDashboard')

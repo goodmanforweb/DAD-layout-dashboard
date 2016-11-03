@@ -1,6 +1,7 @@
 import pvc from '../../public/pvc';
 
-export default function barLine(node) {
+export default function barLine(option) {
+  let configData = null;
   let testMeasureDiscrim = {
     metadata: [
       {colName: 'City', colType: 'STRING'},
@@ -24,9 +25,9 @@ export default function barLine(node) {
     ]
   };
 
-  new pvc.BarChart({
-    canvas: node[0],
-    width: 500,
+  option.chartData ? configData = option.chartData : configData = {
+    canvas: option.node[0],
+    width: option.node[0].clientWidth - 1,
     height: 400,
     crosstabMode: false,
     readers: 'city, period, count, avgLatency',
@@ -80,7 +81,14 @@ export default function barLine(node) {
     hoverable: true,
     tooltipClassName: 'light',
     tooltipOpacity: 1
-  })
+  };
+  new pvc.BarChart(configData)
   .setData(testMeasureDiscrim)
   .render();
+  let chartConfig = {
+    configData: configData,
+    dataSource: testMeasureDiscrim
+  };
+
+  return chartConfig;
 }

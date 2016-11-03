@@ -1,6 +1,7 @@
 import pvc from '../../public/pvc';
 
-export default function line(node) {
+export default function line(option) {
+  let configData = null;
   let relational_01 = {
     resultset: [
       ['London', '2011-06-05', 72],
@@ -43,9 +44,9 @@ export default function line(node) {
     }]
   };
 
-  new pvc.LineChart({
-    canvas: node[0],
-    width: 600,
+  option.chartData ? configData = option.chartData : configData = {
+    canvas: option.node[0],
+    width: option.node[0].clientWidth - 1,
     height: 400,
     // Data source
     crosstabMode: false,
@@ -78,7 +79,15 @@ export default function line(node) {
     colors: [
       '#005CA7', '#FFC20F', '#333333'
     ]
-  })
+  };
+
+  new pvc.LineChart(configData)
   .setData(relational_01)
   .render();
+  let chartConfig = {
+    configData: configData,
+    dataSource: relational_01
+  };
+
+  return chartConfig;
 }
