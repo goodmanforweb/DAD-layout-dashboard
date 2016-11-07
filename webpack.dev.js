@@ -1,6 +1,6 @@
 
 'use strict';
-let postcssConfig = require('./postcss');
+const postcssConfig = require('./postcss');
 //Initialization
 const webpack = require('webpack');
 
@@ -19,9 +19,6 @@ const path = require('path');
 const SRC = path.join(__dirname, 'src');
 const BUILD = path.join(__dirname, 'build');
 const TEMPLATE = path.join(__dirname, 'src/templates/index.html');
-const D3 = path.join(__dirname, 'src/js/public/d3.js');
-const PROTOVIS = path.join(__dirname, 'src/js/public/protovis.js');
-const PVC = path.join(__dirname, 'src/js/public/pvc.js');
 const PUBLIC = path.join(__dirname, 'src/public');
 const LINT = path.join(__dirname, '.eslintrc.js');
 const HOST = process.env.HOST || '0.0.0.0';
@@ -51,9 +48,7 @@ module.exports = {
             }
     },
     entry: {
-        index : SRC,
-        library : ['jquery', D3, PROTOVIS, PVC],
-        common :['react','react-dom','react-router','underscore']
+        index : SRC
     },
     output: {
         path: BUILD,
@@ -97,19 +92,6 @@ module.exports = {
             {
                 test: /\.(scss|sass)$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass?sourceMap'
-            },
-            {
-                test: /\.ts$/,
-                exclude: /(public|node_modules)/,
-                loader: 'typescript-simple',
-                query: {
-                    'ignoreWarnings': [
-                        2300, // 2300 -> Duplicate identifier
-                        2309, // 2309 -> An export assignment cannot be used in a module with other exported elements.
-                        2346, // 2346 -> Supplied parameters do not match any signature of call target.
-                        2432  // 2432 -> In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.
-                    ]
-                }
             }
         ]
     },
@@ -122,8 +104,11 @@ module.exports = {
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') // eslint-disable-line quote-props
           }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common','/js/common.js'),
-        // new webpack.optimize.CommonsChunkPlugin('library','/js/library.js'),
+        // new webpack.optimize.CommonsChunkPlugin('common','/js/common.js'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name:'common',
+            chunks:['index']
+        }),
         new CopyWebpackPlugin([
           { from: PUBLIC, to: BUILD+'/js' }
         ],

@@ -27,24 +27,16 @@ module.exports = {
     devtool: 'eval-source-map',
     noParse: /node_modules\/json-schema\/lib\/validate\.js/,
     entry: {
-        index : SRC,
-        common :['react','react-dom','react-router']
-        library : ['jquery', PROTOVIS, PVC, D3],
-        common :['react','react-dom','react-router', 'underscore']
+        index : SRC
     },
     output: {
         path: BUILD,
          // publicPath: '/',
-        filename: '/js/[hash:8].[name].js'    
         filename: './js/[hash:8].[name].js'      
     },
     resolve: { 
         extensions: ['', '.js', '.jsx', '.scss', '.css'] 
     },
-    eslint: {
-        configFile: LINT,
-        emitError: true
-      },
     module: {
         noParse: /node_modules\/json-schema\/lib\/validate\.js/,
         loaders: [
@@ -79,8 +71,7 @@ module.exports = {
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') // eslint-disable-line quote-props
           }
         }),
-        // new webpack.optimize.CommonsChunkPlugin('common','/js/common.js'),
-        // new webpack.optimize.CommonsChunkPlugin('common','./js/[hash:8].common.js'),
+        new webpack.optimize.CommonsChunkPlugin('common','./js/[hash:8].common.js'),
         new CopyWebpackPlugin([
           { from: PUBLIC, to: BUILD+'./js' }
         ],
