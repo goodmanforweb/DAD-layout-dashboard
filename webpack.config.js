@@ -23,9 +23,6 @@ const PVC = path.join(__dirname, 'src/js/public/pvc.js');
 const PUBLIC = path.join(__dirname, 'src/public');
 
 module.exports = {
- // Source maps used for debugging information
-    devtool: 'eval-source-map',
-    noParse: /node_modules\/json-schema\/lib\/validate\.js/,
     entry: {
         index : SRC
     },
