@@ -10,10 +10,14 @@ Download and install nodejs.
 
 ## Development environment:
 npm install
+
 npm start
+
 npm test
+
 localhost:3000
 
 ## Production environment:
 npm install
+
 npm run build
