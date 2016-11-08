@@ -20,7 +20,7 @@ class WidgetPreview extends Component {
 
   constructor(props) {
     super(props);
-    autoBind(this, 'drop', 'setConfig', 'chartProperty', 'dataSource');
+    autoBind(this, 'drop', 'setConfig', 'chartProperty', 'dataSource', 'initGridConfig');
   }
 
   allowDrop(ev) {
@@ -57,7 +57,8 @@ class WidgetPreview extends Component {
       let chartObj = {
         chartData: chartData.configData,
         dataType: dataType,
-        canvas: chartData.configData.canvas
+        canvas: chartData.configData.canvas,
+        dataTitle: chartData.dataTitle
       };
 
       this.props.getChartConfig(chartObj);
@@ -80,9 +81,11 @@ class WidgetPreview extends Component {
         (targetChild.childNodes[n].className).indexOf('widgetConfig') > -1 ?
           WidgetConfig(dataType, name) : null;
       }
+      let gridData = this.initGridConfig(targetChild.childNodes[0]);
       let gridConfig = {
-        type: dataType,
-        node: targetChild.childNodes[0]
+        node: targetChild.childNodes[0],
+        configRow: gridData.configRow,
+        configColumn: gridData.configColumn
       };
 
       this.props.getRowConfig(gridConfig);
@@ -99,14 +102,14 @@ class WidgetPreview extends Component {
       widgetComponent(options);
     }
     $('.widgetConfig').css({
-      display: 'none',
       zIndex: 0
     });
+    $('.widgetConfig').addClass('hide');
     let name = (target[0].childNodes[0].childNodes[1].className).split(' ')[1];
 
+    $('.' + name).removeClass('hide');
     $('.' + name).css({
-      zIndex: 100,
-      display: 'block'
+      zIndex: 100
     });
     $('.widgetPreview').css({
       background: 'none'
@@ -158,27 +161,64 @@ class WidgetPreview extends Component {
     return domType[type] ? domType[type]() : domType['gridOne']();
   }
 
+  // init rows and column layout parameter
+  initGridConfig(node) {
+    let configColumn = [];
+    let configRow = [
+      {
+        name: 'name',
+        value: node.className
+      },
+      {
+        name: 'height',
+        value: ''
+      }
+    ];
+
+    for (let i = 0; i < node.childNodes.length; i++) {
+      let column = [
+        {
+          name: 'name',
+          value: node.childNodes[i].className
+        },
+        {
+          name: 'bootstrapSmall',
+          value: ''
+        },
+        {
+          name: 'height',
+          value: ''
+        }
+      ];
+
+      configColumn.push(column);
+    };
+
+    let data = {
+      configRow: configRow,
+      configColumn: configColumn
+    };
+
+    return data;
+  }
   // widgetconfig show or not
   setConfig(ev) {
     let data = this.props.reportData;
     let node = $(ev.target)[0].previousSibling;
 
     if ($(ev.target)[0].className === 'widgetAction') {
-      $('.widgetConfig').css({
-        display: 'none',
-        zIndex: 0
-      });
+      $('.widgetConfig').addClass('hide');
+      $(node).removeClass('hide');
       node.style.zIndex = 100;
-      node.style.display = 'block';
     }
-    else {
-      $(ev.target)[0].localName === 'input' ? this.chartProperty(data, ev) : this.dataSource();
+    else if ($(ev.target)[0].localName === 'input' && $(ev.target)[0].type === 'radio') {
+      this.chartProperty(data, ev);
     }
   }
 
   // modify chart data source
   dataSource() {
-    console.log('enter');
+    // console.log('enter');
   }
 
   // modify chart properties,data is the chart property
@@ -189,20 +229,18 @@ class WidgetPreview extends Component {
       d.canvas === $($(ev.target)[0].offsetParent)[0].previousSibling.className ?
         reportComponents = d : null;
     });
-    reportComponents.components.rows.map(t=>{
-      t.properties.map(i=>{
-        if (i.name === $(ev.target)[0].name) {
-          i.value = $(ev.target)[0].value;
-          ($(ev.target)[0].value === 'false' || $(ev.target)[0].value === 'true') ?
-          reportComponents.chartData[$(ev.target)[0].name] =
-            JSON.parse($(ev.target)[0].value) :
-          reportComponents.chartData[$(ev.target)[0].name] = $(ev.target)[0].value;
-        }
-      });
+    reportComponents.components.properties.map(i=>{
+      if (i.name === $(ev.target)[0].name) {
+        i.value = $(ev.target)[0].value;
+        ($(ev.target)[0].value === 'false' || $(ev.target)[0].value === 'true') ?
+        reportComponents.chartData[$(ev.target)[0].name] =
+          JSON.parse($(ev.target)[0].value) :
+        reportComponents.chartData[$(ev.target)[0].name] = $(ev.target)[0].value;
+      }
     });
     this.props.saveData(data);
     let obj = {
-      option: reportComponents.chartType,
+      option: reportComponents.type,
       node: [reportComponents.canvas],
       chartData: reportComponents.chartData
     };

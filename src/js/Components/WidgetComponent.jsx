@@ -1,3 +1,7 @@
+/**
+ * Created by Fine on 2016/9/12.
+ */
+
 import '../../style/Components/WidgetComponent';
 import TableComponent from './TableComponent';
 import TextComponent from './TextComponent';

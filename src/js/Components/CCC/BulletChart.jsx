@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 export default function bullet(option) {
@@ -37,14 +40,26 @@ export default function bullet(option) {
     bulletRuleLabel_font: 'normal 10px "Open Sans"',
     bulletSubtitle: 'Fixed Sub-title',
     bulletSubtitle_font: 'normal 10px "Open Sans"',
-    bulletRanges: [200, 500, 1000]
+    bulletRanges: [200, 500, 1000],
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
   };
   new pvc.BulletChart(configData)
   .setData(bullet_NameValueMarker)
   .render();
+  let dataTitle = {
+    id: '',
+    type: 'ComponentscccBarChart',
+    typeDesc: 'CCC Bar Chart',
+    parent: 'UnIqEiD'
+  };
   let chartConfig = {
     configData: configData,
-    dataSource: bullet_NameValueMarker
+    dataSource: bullet_NameValueMarker,
+    dataTitle: dataTitle
   };
 
   return chartConfig;

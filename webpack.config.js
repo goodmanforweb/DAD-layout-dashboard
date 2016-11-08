@@ -17,9 +17,9 @@ const path = require('path');
 const SRC = path.join(__dirname, 'src');
 const BUILD = path.join(__dirname, 'build');
 const TEMPLATE = path.join(__dirname, 'src/templates/index.html');
-const D3 = path.join(__dirname, 'src/js/public/d3.js');
-const PROTOVIS = path.join(__dirname, 'src/js/public/protovis.js');
-const PVC = path.join(__dirname, 'src/js/public/pvc.js');
+// const D3 = path.join(__dirname, 'src/js/public/d3.js');
+// const PROTOVIS  = path.join(__dirname, 'src/js/public/protovis.js');
+// const PVC = path.join(__dirname, 'src/js/public/pvc.js');
 const PUBLIC = path.join(__dirname, 'src/public');
 
 module.exports = {
@@ -52,7 +52,8 @@ module.exports = {
             },
             {test:/\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
             // inline base64 URLs for <=8k images, direct URLs for the rest
-            {test: /\.(png|jpg|ttf|woff|svg|eot)$/, loader: 'url-loader'},
+            {test: /\.(png|jpg|svg)$/, loader: "url-loader?limit=8192&name=/images/[hash:8].[name].[ext]"},
+            {test: /\.(ttf|woff|eot)$/, loader: "url-loader?limit=8192&name=/fonts/[hash:8].[name].[ext]"},
             {
                 test: /\.(scss|sass)$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass?sourceMap'

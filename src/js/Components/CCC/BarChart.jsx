@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 export default function bar(option) {
@@ -48,15 +51,35 @@ export default function bar(option) {
     legendPosition: 'left',
     legend: true,
     stacked: false,
-    clickable: false
+    clickable: false,
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    executeAtStart: true,
+    compatVersion: 2,
+    seriesInRows: false,
+    clickAction: '',
+    listeners: [],
+    parameters: [],
+    plotFrameVisible: false,
+    orthoAxisTicks: false,
+    orthoAxisTitleAlign: 'left',
+    name: ''
   };
   new pvc.BarChart(configData)
   .setData(relational)
   .render();
 
+  let dataTitle = {
+    type: 'ComponentscccBarChart',
+    typeDesc: 'CCC Bar Chart',
+    parent: 'UnIqEiD',
+    meta_cdwSupport: true
+  };
   let chartConfig = {
     configData: configData,
-    dataSource: relational
+    dataSource: relational,
+    dataTitle: dataTitle
   };
 
   return chartConfig;

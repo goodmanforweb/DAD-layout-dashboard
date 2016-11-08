@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import React from 'react';
 import $ from 'jquery';
 import '../../style/Components/DoardMenu';

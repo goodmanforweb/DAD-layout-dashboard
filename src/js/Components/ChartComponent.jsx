@@ -1,4 +1,6 @@
-
+/**
+ * Created by Fine on 2016/9/10.
+ */
 import bar from './CCC/BarChart';
 import barLine from './CCC/BarLineChart';
 import bullet from './CCC/BulletChart';
@@ -6,6 +8,7 @@ import line from './CCC/LineChart';
 import stackedBar from './CCC/StackedBarChart';
 import OlapChartsRenderer from './OlapChart';
 
+// switch choose chart type
 function ChartComponent(args) {
   let chartType = {
     barChart() {

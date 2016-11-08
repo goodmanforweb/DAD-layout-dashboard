@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 new pvc.BoxplotChart({
@@ -30,7 +33,12 @@ new pvc.BoxplotChart({
     hoverable:  true,
 
     // Color axes
-    colors: ['#005CA7']
+    colors: ['#005CA7'],
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
 })
 .setData(boxplotData_03)
 .render();

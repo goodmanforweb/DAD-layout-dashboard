@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/10/13.
+ */
 import $ from 'jquery';
 
 class GirdOneConfig {

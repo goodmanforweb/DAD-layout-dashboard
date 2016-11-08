@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/8/25.
+ */
 
 import BarConfig from './Config/BarConfig';
 import TextConfig from './Config/TextConfig';

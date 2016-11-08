@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 export default function line(option) {
@@ -78,15 +81,27 @@ export default function line(option) {
     // Color axes
     colors: [
       '#005CA7', '#FFC20F', '#333333'
-    ]
+    ],
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
   };
 
   new pvc.LineChart(configData)
   .setData(relational_01)
   .render();
+  let dataTitle = {
+    id: '',
+    type: 'ComponentscccBarChart',
+    typeDesc: 'CCC Bar Chart',
+    parent: 'UnIqEiD'
+  };
   let chartConfig = {
     configData: configData,
-    dataSource: relational_01
+    dataSource: relational_01,
+    dataTitle: dataTitle
   };
 
   return chartConfig;

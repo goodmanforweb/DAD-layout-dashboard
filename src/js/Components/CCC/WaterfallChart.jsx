@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 new pvc.WaterfallChart({
@@ -41,7 +44,12 @@ new pvc.WaterfallChart({
     hoverable:  true,
 
     // Color axes
-    colors: ['#005CA7', '#FFC20F']
+    colors: ['#005CA7', '#FFC20F'],
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
 })
 .setData(testWaterfall1)
 .render();

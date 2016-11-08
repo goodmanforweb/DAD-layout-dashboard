@@ -4,100 +4,134 @@
 
 import React from 'react';
 import autoBind from 'react-autobind';
-// import $ from 'jquery';
+import d3 from '../public/d3';
+import $ from 'jquery';
 
 import WidgetPreview from './WidgetPreview';
-import { test } from '../public/test';
-import { components } from '../public/barData';
-import { rowData } from '../public/rowData';
-import { columnData } from '../public/columnData';
 import '../../style/Components/WidgetMain';
 
 class WidgetMain extends React.Component {
+
+  // WidgetMain init
   constructor(props) {
     super(props);
     this.reportData = [];
-    this.reportChart = [];
+    this.reportChart = null;
     this.columnArr = [];
     autoBind(this, 'getChartConfig', 'saveData', 'saveReport', 'getRowConfig',
       'getColumnConfig', 'layoutData');
   }
 
+  // process charts data
   getChartConfig(data) {
-    components.rows.map(d=>{
-      d.properties.map(t=>{
-        data.chartData[t.name] ? t.value = data.chartData[t.name] : null;
-        t.name === 'htmlObject' ? t.value = data.canvas.parentNode.parentNode.className : null;
-      });
+    let configArr = [];
+
+    d3.entries(data.chartData).map(d=>{
+      let chart = {
+        name: d.key,
+        value: d.value
+      };
+
+      configArr.push(chart);
     });
+    let row = {
+      id: data.canvas.className,
+      type: data.dataTitle.type,
+      typeDesc: data.dataType.typeDesc,
+      parent: data.dataTitle.parent,
+      properties: configArr,
+      meta_cdwSupport: data.dataTitle.meta_cdwSupport
+    };
     let chartComponents = {
-      chartType: data.dataType,
+      type: data.dataType,
       canvas: data.canvas.className,
       chartData: data.chartData,
-      components: components
+      components: row
     };
 
     this.reportData.push(chartComponents);
-    // console.log(this.reportData);
   }
 
+  // process rows data
   getRowConfig(data) {
-    rowData.properties.map(d=>{
-      d.name === 'name' ? d.value = data.node.className : null;
-    });
     let rowObj = {
-      type: data.type,
-      name: data.node.className,
-      rowData: rowData
+      type: 'LayoutRow',
+      typeDesc: '行',
+      parent: 'UnIqEiD',
+      id: data.node.className,
+      properties: data.configRow
     };
 
     this.reportData.push(rowObj);
     this.getColumnConfig(data);
   }
 
+  // process column data
   getColumnConfig(data) {
-    for (let i = 0; i < data.node.childNodes.length; i++) {
+    for (let i = 0; i < data.configColumn.length; i++) {
       let columnObj = {
-        type: data.type,
-        name: data.node.childNodes[i].className,
-        columnData: columnData
+        id: data.node.childNodes[i].className,
+        parent: data.node.className,
+        type: 'LayoutBootstrapColumn',
+        typeDesc: '列',
+        properties: data.configColumn[i]
       };
 
       this.reportData.push(columnObj);
     };
   }
 
+  // get modified charts properties and data from widgetPreview
   saveData(data) {
-    Array.isArray(data) ? this.reportChart = data : this.reportChart = this.reportData;
+    this.reportChart = (Array.isArray(data) ? data : this.reportData);
   }
 
+  // process layout data
   layoutData() {
+    let report = {
+        layout: {},
+        components: {},
+        datasources: {},
+        filename: null
+      },
+      componentsRows = [],
+      layoutRows = [],
+      widgetsData = (this.reportChart === null ? this.reportData : this.reportChart);
 
+    widgetsData.map(d=>{
+      (d.type.indexOf('Chart') > -1) ? componentsRows.push(d.components) : null;
+      (d.type.indexOf('LayoutRow') > -1) ? layoutRows.push(d) : null;
+    });
+    report.layout = {
+      title: 'CDF - Sample structure',
+      rows: layoutRows
+    };
+    report.components = {
+      rows: componentsRows
+    };
+    return report;
   }
 
+  // save and commit layout data by form
   saveReport(ev) {
-    console.log(this.reportChart);
+    this.operation = $(ev.target)[0].name;
+    let data = new FormData(document.querySelector('.formHidden'));
 
-    // let data = new FormData(document.querySelector('.formHidden'));
-
-    // $.ajax({
-    //   type: 'post',
-    //   headers: {'Content-Type': undefined},
-    //   url: '/xdatainsight/plugin/pentaho-cdf-dd/api/syncronizer/saveDashboard',
-    //   data: data,
-    //   processData: false,
-    //   contentType: 'multipart/form-data',
-    //   cache: false,
-    //   success(msg) {
-    //     console.log(msg);
-    //   }
-    // });
+    $.ajax({
+      type: 'post',
+      url: '/xdatainsight/plugin/pentaho-cdf-dd/api/syncronizer/saveDashboard',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success(msg) {
+        console.log(msg);
+      }
+    });
   }
 
   render() {
-    // let randomNum = new Date().getTime();
     let file = '/home/1111.wcdf';
-    let operation = 'saveas';
 
     return (
       <div className = "widgetMain">
@@ -107,11 +141,12 @@ class WidgetMain extends React.Component {
         <div className = "footer">
           <form className = "formHidden">
             <input type="hidden" name="file" value = {file}/>
-            <input type="hidden" name="operation" value = {operation}/>
-            <input type="hidden" name="cdfstructure" value = {JSON.stringify(test, '', 1)}/>
+            <input type="hidden" name="operation" value = {this.operation}/>
+            <input type="hidden" name="cdfstructure"
+              value = {JSON.stringify(this.layoutData(), '', 1)}/>
           </form>
-          <input type = "button" value = "另存为" onClick = {this.saveReport}/>
-          <input type = "button" value = "保存" onClick = {this.saveReport}/>
+          <input type = "button" name="saveas" value = "另存为" onClick = {this.saveReport}/>
+          <input type = "button" name="save" value = "保存" onClick = {this.saveReport}/>
         </div>
       </div>
     );

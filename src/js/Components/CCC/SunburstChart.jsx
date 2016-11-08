@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 new pvc.SunburstChart({
@@ -18,7 +21,12 @@ new pvc.SunburstChart({
 
     // Chart/Interaction
     selectable: true,
-    hoverable:  true
+    hoverable:  true,
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
 })
 .setData(testSunburstThreeLevel)
 .render();

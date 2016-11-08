@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import pvc from '../../public/pvc';
 
 export default function barLine(option) {
@@ -80,14 +83,26 @@ export default function barLine(option) {
     selectable: true,
     hoverable: true,
     tooltipClassName: 'light',
-    tooltipOpacity: 1
+    tooltipOpacity: 1,
+    tooltip: '',
+    barOrthoSizeMin: '',
+    dataSource: '',
+    htmlObject: option.node[0].parentNode.parentNode.className,
+    name: ''
   };
   new pvc.BarChart(configData)
   .setData(testMeasureDiscrim)
   .render();
+  let dataTitle = {
+    id: '',
+    type: 'ComponentscccBarChart',
+    typeDesc: 'CCC Bar Chart',
+    parent: 'UnIqEiD'
+  };
   let chartConfig = {
     configData: configData,
-    dataSource: testMeasureDiscrim
+    dataSource: testMeasureDiscrim,
+    dataTitle: dataTitle
   };
 
   return chartConfig;

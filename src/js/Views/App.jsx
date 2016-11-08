@@ -1,3 +1,6 @@
+/**
+ * Created by Fine on 2016/8/20.
+ */
 import React from 'react';
 import $ from 'jquery';
 

@@ -1,4 +1,6 @@
-
+/**
+ * Created by Fine on 2016/9/25.
+ */
 import $ from 'jquery';
 import baseComponent from './BaseComponent';
 

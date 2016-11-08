@@ -1,4 +1,8 @@
+/**
+ * Created by Fine on 2016/10/13.
+ */
 import $ from 'jquery';
+import DataSource from './DataSource';
 
 class BarConfig {
   constructor() {
@@ -9,6 +13,7 @@ class BarConfig {
     let html = '<div class="configSection">' +
       '<div>' +
       '<span class="closeIcon">X</span><span class="titleName">柱状图设置</span>' +
+      '<span class="newquery">新建查询</span>' +
       '</div>' +
       '<div class="propertyConfig">' +
       '<div class="titleProperty">' +
@@ -27,8 +32,7 @@ class BarConfig {
       '<h3>数据来源</h3>' +
       '<span>选择查询</span>' +
       '<select class="data">' +
-      '<option value="dataSource">sqlquery</option>' +
-      '<option value="dataSource">mdxquery</option>' +
+      '<option value="dataSource">选择查询</option>' +
       '<option value="dataSource">创建新查询</option>' +
       '</select>' +
       '</div>' +
@@ -105,13 +109,29 @@ class BarConfig {
 
   renderConfig(node) {
     $('.' + node).html(this.template());
+    let dataSourceComponent = new DataSource();
+
+    dataSourceComponent.bindConfig();
   }
 
   config() {
     $('.closeIcon').on('click', ()=>{
-      $('.widgetConfig').css({display: 'none'});
+      $('.widgetConfig').addClass('hide');
     });
-    $('input').unbind('click');
+    $('.newquery').addClass('hide');
+    $('.dataSourceConfig').addClass('hide');
+    // $('input').unbind('click');
+    $('.dataSource .data').on('change', (ev)=>{
+      let nodeList = $(ev.target)[0];
+
+      for (let i = 0; i < nodeList.length; i++) {
+        if (nodeList[i].selected === true && nodeList[i].innerHTML === '创建新查询') {
+          $('.newquery').removeClass('hide');
+          $('.dataSourceConfig').removeClass('hide');
+          $('.propertyConfig').addClass('hide');
+        }
+      }
+    });
   }
 }
 export default BarConfig;
