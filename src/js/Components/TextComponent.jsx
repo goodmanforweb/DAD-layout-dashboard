@@ -10,7 +10,7 @@ export default class TextComponent extends baseComponent {
 
     return (
       '<div class = "widgetChild">' +
-        '<div class = "widgetContainer">' +
+        '<div class = "widgetContainer container_' + randomNum + '">' +
           '<div class = "widgetText">' +
             '<textarea class = "placeholderText" placeholder = "文本">' +
             '</textarea>' +

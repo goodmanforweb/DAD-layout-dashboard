@@ -8,6 +8,9 @@
   margin: 0 0 65px 25%;
   background: url('../../images/drop.png') no-repeat 50% 50%; 
 }
+svg{
+  font-size: 12px;
+}
 .waterMark{
   top: center;
   left: center;

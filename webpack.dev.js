@@ -1,9 +1,11 @@
 
+'use strict';
+const postcssConfig = require('./postcss');
 //Initialization
 const webpack = require('webpack');
 
-//postcss plugins
-const postcssConfig = require('./postcss');
+// Lint and test
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 //File ops
 const HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -18,26 +20,63 @@ const SRC = path.join(__dirname, 'src');
 const BUILD = path.join(__dirname, 'build');
 const TEMPLATE = path.join(__dirname, 'src/templates/index.html');
 const PUBLIC = path.join(__dirname, 'src/public');
-
+const LINT = path.join(__dirname, '.eslintrc.js');
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
+const PROXY = `http://${HOST}:${PORT}`;
+ 
 module.exports = {
+ // Source maps used for debugging information
+    devtool: 'eval-source-map',
+ // webpack-dev-server configuration
+    devServer: {
+        contentBase:'./build',
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        stats: 'errors-only',
+        host: HOST,
+        port: PORT,
+        outputPath: BUILD, // The path should be an absolute path to your build destination.
+        proxy: {
+                '/xdatainsight/*': {
+                    target: 'http://',
+                    secure: false,
+                    auth: 'admin:password'
+                }   
+            }
+    },
     entry: {
         index : SRC
     },
     output: {
         path: BUILD,
-         // publicPath: '/',
-        filename: './js/[hash:8].[name].js'      
+        // publicPath: '/',
+        filename: '/js/[name].js'      
     },
-    resolve: { 
+    resolve: {
         extensions: ['', '.js', '.jsx', '.scss', '.css'] 
     },
+    eslint: {
+        configFile: LINT,
+        emitError: true
+      },
     module: {
+
+        preLoaders: [
+          {
+            test: /\.jsx?$/,
+            exclude: /(public|node_modules)/,
+            loader: 'eslint-loader'
+          }
+        ],
         noParse: /node_modules\/json-schema\/lib\/validate\.js/,
         loaders: [
             {
               test: /\.(es6|js)$/,
               exclude: /(public|node_modules)/,
-              loaders: ['babel-loader']
+              loaders: ['babel-loader', 'eslint-loader']
             },
             {
                 test:/\.jsx?$/,
@@ -49,8 +88,7 @@ module.exports = {
             },
             {test:/\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
             // inline base64 URLs for <=8k images, direct URLs for the rest
-            {test: /\.(png|jpg|svg)$/, loader: "url-loader?limit=8192&name=/images/[hash:8].[name].[ext]"},
-            {test: /\.(ttf|woff|eot)$/, loader: "url-loader?limit=8192&name=/fonts/[hash:8].[name].[ext]"},
+            {test: /\.(png|jpg|ttf|woff|svg|eot)$/, loader: 'url-loader'},
             {
                 test: /\.(scss|sass)$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass?sourceMap'
@@ -66,9 +104,9 @@ module.exports = {
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') // eslint-disable-line quote-props
           }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common','./js/[hash:8].common.js'),
+        new webpack.optimize.CommonsChunkPlugin('common','/js/common.js'),
         new CopyWebpackPlugin([
-          { from: PUBLIC, to: BUILD+'./js' }
+          { from: PUBLIC, to: BUILD+'/js' }
         ],
           {
             ignore: [
@@ -85,6 +123,6 @@ module.exports = {
             hash:false
         }),
         new webpack.BannerPlugin('This file is created by Fine'),
-        new ExtractTextPlugin("./css/[hash:8].styles.css")
+        new ExtractTextPlugin("/css/styles.css")
        ]
 };

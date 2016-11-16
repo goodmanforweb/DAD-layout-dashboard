@@ -10,7 +10,7 @@ export default class SelectComponent extends baseComponent {
 
     return (
       '<div class = "widgetChild">' +
-        '<div class = "widgetContainer">' +
+        '<div class = "widgetContainer container_' + randomNum + '">' +
           '<div class = "widgetSelect">' +
             '<select>' +
             '<option value ="bar">bar</option>' +

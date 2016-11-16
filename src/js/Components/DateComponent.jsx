@@ -10,7 +10,7 @@ export default class DateComponent extends baseComponent {
 
     return (
       '<div class = "widgetChild">' +
-        '<div class = "widgetContainer">' +
+        '<div class = "widgetContainer container_' + randomNum + '">' +
           '<div class = "widgetDate">' +
             '<input type = "date">' +
           '</div>' +

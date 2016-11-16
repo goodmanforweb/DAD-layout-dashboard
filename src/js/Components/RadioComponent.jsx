@@ -10,7 +10,7 @@ export default class RadioComponent extends baseComponent {
 
     return (
       '<div class = "widgetChild">' +
-        '<div class = "widgetContainer">' +
+        '<div class = "widgetContainer container_' + randomNum + '">' +
           '<div class = "widgetRadio">' +
             '<input type = "radio">name' +
           '</div>' +

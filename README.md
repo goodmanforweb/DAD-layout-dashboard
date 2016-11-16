@@ -1,4 +1,4 @@
-# Dashboard React Starter
+# Dashboard React
 
 A dashboard for writing React Apps based ECMAScript 2015 (ES6) app using webpack, eslint, karma and more.
 

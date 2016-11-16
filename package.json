@@ -5,7 +5,7 @@
   "description": "A drag and drop dashboard for writing React Apps based ECMAScript 2015 (ES6) app using webpack and more",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.src.js --hot --inline",
+    "start": "webpack-dev-server --config webpack.dev.js --hot --inline",
     "test": "karma start karma.conf.js",
     "build": "set NODE_ENV=production && webpack -p --config webpack.config.js --progress --colors"
   },
@@ -19,7 +19,6 @@
     "npm": "2.14.7"
   },
   "devDependencies": {
-    "Base": "^1.0.0",
     "autoprefixer": "^6.4.1",
     "babel": "~6.3.26",
     "babel-core": "^6.6.4",

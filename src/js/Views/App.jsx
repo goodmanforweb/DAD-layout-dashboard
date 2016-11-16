@@ -3,35 +3,37 @@
  */
 import React from 'react';
 import $ from 'jquery';
+import autoBind from 'react-autobind';
 
-import DoardMenu from '../Components/DoardMenu';
-import WidgetMain from '../Components/WidgetMain';
+import DoardMenu from '../DoardMenu';
+import WidgetMain from '../WidgetMain';
 import '../../style/Views/App';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    autoBind(this, 'setHeight');
     $(window).resize(()=>{
-      this.setHeight();
+      this.setHeight('.dashboardBox', 75);
     });
   }
 
-  setHeight() {
+  setHeight(name, tall) {
     let height = $(window).height();
-    let dashboardBox = document.querySelector('.dashboardBox');
+    let node = document.querySelector(name);
 
-    dashboardBox.style.height = height - 75 + 'px';
+    node.style.height = height - tall + 'px';
   }
 
   componentDidMount() {
-    this.setHeight();
+    this.setHeight('.dashboardBox', 75);
   }
 
   render() {
     return (
       <div className = "dashboardBox">
-        <DoardMenu />
+        <DoardMenu setHeight={this.setHeight}/>
         <WidgetMain />
       </div>
     );

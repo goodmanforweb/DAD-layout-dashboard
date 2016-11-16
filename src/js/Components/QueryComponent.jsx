@@ -9,7 +9,7 @@ export default class QueryComponent extends baseComponent {
     let randomNum = new Date().getTime();
     return (
       '<div class = "widgetChild">' +
-        '<div class = "widgetContainer">' +
+        '<div class = "widgetContainer container_' + randomNum + '">' +
           '<div class = "widgetQuery">' +
             '<input type = "text">' +
           '</div>' +
