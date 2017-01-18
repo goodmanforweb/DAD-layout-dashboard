@@ -1,19 +1,50 @@
+
+.mainAction {
+	width: 120px;
+	height: 25px;
+	background: rgba(55,158,239,0.7);
+	position: fixed;
+	top: 0;
+	left: 350px;
+	transition: all .3s linear;
+	z-index: 100;
+	i {
+        cursor: pointer;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 5px 0 0 10px;
+      };
+    i.preLayout {
+        width: 16px;
+    };
+	$config: saveas, apply, preLayout, variables, query;
+    $dir: ../../images;
+    @each $icon in ($config){
+        .$(icon) {
+            background: url('$dir/$(icon).png') no-repeat 0 0;
+            background-size: cover;
+        }
+    };
+}
+.hidden{
+	display: none;
+}
 .widgetMain{
-	width: 79%;
+	width: calc(100% - 353px);
 	height: 99%;
-	float: left;
 	position: relative;
-	/*overflow: auto;*/
 	.footer{
-		width: 80%;
+		width: calc(100% - 353px);
 		height: 60px;
 		position: fixed;
 		bottom: 0;
-		left: 20%;
+		left: 353px;
 		background-color: #fff;
 		box-shadow: 1px 1px 10px #ccc;
 		text-align: right;
-		z-index: 1000;
+		z-index: 100;
+		transition: all .2s linear;
 		input{
 			margin: 20px 40px 0 0;
 			width: 80px;
@@ -30,7 +61,7 @@
 			color: #fff;
 		}
 	}
-	.formHidden{
+	.formHidden {
 		display: none;
 	}
 }

@@ -20,7 +20,7 @@ export default class SelectComponent extends baseComponent {
             '</select>' +
           '</div>' +
         '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">select</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );

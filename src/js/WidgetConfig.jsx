@@ -66,10 +66,8 @@ function WidgetConfig(option, node) {
       stackedBarConfig.renderConfig(node);
       stackedBarConfig.bindConfig();
     },
-    olapChart() {
-      let olapConfig = new OlapConfig();
-
-      olapConfig.renderConfig(node);
+    olapPlugin() {
+      new OlapConfig(node);
     },
     table() {
       let tableConfig = new TableConfig();

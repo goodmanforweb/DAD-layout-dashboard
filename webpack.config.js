@@ -17,6 +17,9 @@ const path = require('path');
 const SRC = path.join(__dirname, 'src');
 const BUILD = path.join(__dirname, 'build');
 const TEMPLATE = path.join(__dirname, 'src/templates/index.html');
+// const D3 = path.join(__dirname, 'src/js/public/d3.js');
+// const PROTOVIS  = path.join(__dirname, 'src/js/public/protovis.js');
+// const PVC = path.join(__dirname, 'src/js/public/pvc.js');
 const PUBLIC = path.join(__dirname, 'src/public');
 
 module.exports = {
@@ -26,7 +29,7 @@ module.exports = {
     output: {
         path: BUILD,
          // publicPath: '/',
-        filename: './js/[hash:8].[name].js'      
+        filename: './js/[name].[hash:8].min.js'      
     },
     resolve: { 
         extensions: ['', '.js', '.jsx', '.scss', '.css'] 
@@ -66,7 +69,7 @@ module.exports = {
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') // eslint-disable-line quote-props
           }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common','./js/[hash:8].common.js'),
+        new webpack.optimize.CommonsChunkPlugin('common','./js/common.[hash:8].min.js'),
         new CopyWebpackPlugin([
           { from: PUBLIC, to: BUILD+'./js' }
         ],

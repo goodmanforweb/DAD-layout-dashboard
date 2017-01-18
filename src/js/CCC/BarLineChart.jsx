@@ -32,8 +32,7 @@ export default function barLine(option) {
   option.chartData ? configData = option.chartData : configData = {
     canvas: option.node[0],
     width: option.node[0].clientWidth - 1,
-    height: 400,
-    crosstabMode: false,
+    height: 350,
     readers: 'city, period, count, avgLatency',
     dimensions: {
       count: {format: '#,0'},
@@ -61,12 +60,9 @@ export default function barLine(option) {
         }
       }
     ],
-    axisGrid_strokeStyle: '#F7F8F9',
-    axisLabel_font: 'normal 10px "Open Sans"',
-    axisTitleLabel_font: 'normal 12px "Open Sans"',
     baseAxisTooltipAutoContent: 'summary',
     axisBandSizeRatio: 0.6,
-    orthoAxisTitle: 'Count',
+    orthoAxisTitle: '',
     orthoAxisOffset: 0.02,
     orthoAxisGrid: true,
     ortho2AxisTitle: 'Avg. Latency',
@@ -76,11 +72,14 @@ export default function barLine(option) {
     color2AxisTransform(c) {
       return c.brighter(0.5);
     },
+    orientation: 'vertical',
+    valuesVisible: false,
     legend: true,
-    legendFont: 'normal 11px "Open Sans"',
-    animate: true,
+    legendPosition: 'bottom',
+    animate: false,
     selectable: true,
     hoverable: true,
+    baseAxisGrid: false,
     tooltipClassName: 'light',
     tooltipOpacity: 1,
     tooltip: '',
@@ -90,6 +89,7 @@ export default function barLine(option) {
     htmlObject: htmlObject,
     executeAtStart: true,
     compatVersion: 2,
+    crosstabMode: false,
     seriesInRows: false,
     clickAction: '',
     listeners: [],
@@ -97,15 +97,15 @@ export default function barLine(option) {
     plotFrameVisible: false,
     orthoAxisTicks: false,
     orthoAxisTitleAlign: 'left',
-    name: ''
+    name: 'BarLineChart'
   };
   new pvc.BarChart(configData)
   .setData(testMeasureDiscrim)
   .render();
   let dataTitle = {
     id: '',
-    type: 'ComponentscccBarChart',
-    typeDesc: 'CCC Bar Chart',
+    type: 'ComponentscccBarLineChart',
+    typeDesc: 'CCC Bar Line Chart',
     parent: 'UnIqEiD'
   };
   let chartConfig = {

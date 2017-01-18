@@ -10,7 +10,6 @@
 	background-color: #fff;
 	overflow: auto;
 	z-index: 10;
-	font-family: 'MicrosoftYaHei';
 }
 .hide{
 		display: none;
@@ -19,6 +18,7 @@
 	width: calc(100% - 40px);
 	padding: 10px 20px 0 20px;
 	font-size: 12px;
+	font-family: 'Microsoft YaHei';
 	.closeIcon{
 		display: block;
 		width: 100px;
@@ -52,13 +52,32 @@
 		width: 160px;
 	}
 	.dataSource{
+		>div{
+			height: 28px;
+		}
 		span{
 			display: inline-block;
 			margin-right: 20px;
 		}
 		select{
 			width: 160px;
+			height: 22px;
+			font-size: 12px;
+		}
+		input.fileBrowse{
+			display: inline-block;
+			margin-left: 15px;
+			background-color: #00679A;
+			width: 55px;
 			height: 25px;
+			border: none;
+			color: #fff;
+			cursor: pointer;
+			font-size: 12px;
+			line-height: 25px;
+			border-radius: 3px;
+		}
+		.filePath{
 			font-size: 12px;
 		}
 	}
@@ -71,7 +90,7 @@
 			}
 			input[type="text"]{
 				width: 160px;
-				margin-right: 20px;
+				margin-right: 10px;
 			}
 		}
 	}
@@ -83,16 +102,23 @@
 		}
 		h3:nth-child(1){
 			cursor: auto;
-			margin-right: 220px;
+			margin-right: 200px;
+		}
+		input[type="text"]{
+			width: 80px;
+			display: inline-block;
+			padding-left: 5px;
 		}
 		ul{
 			border: 1px solid grey;
 			-webkit-padding-start: 0px !important;
+			margin-top: -5px;
 			li{
 				list-style: none;
 				width: 100%;
-				height: 20px;
+				height: 30px;
 				line-height: 20px;
+				padding-top: 5px;
 				span{
 					display: inline-block;
 					width: 90px;
@@ -114,7 +140,6 @@
 			display: inline-block;
 			margin-left: 20px;
 			width: 180px;
-			cursor: pointer;
 		}
 		select, textarea{
 			margin-left: 20px;
@@ -127,10 +152,23 @@
 		div.queryParam{
 			margin-bottom: 30px;
 			.rightNowQuery{
+				width: 60px;
 				display: block;
 				font-size: 14px;
 				cursor: pointer;
 				color: #1288EB;
+			}
+			input[type="text"]{
+				width: 75px;
+				margin: 5px 0 0 0;
+				padding-left: 5px;
+			}
+		}
+		div.responseParam{
+			input[type="text"]{
+				width: 75px;
+				margin: 5px 0 0 0;
+				padding-left: 5px;
 			}
 		}
 		label{
@@ -145,7 +183,7 @@
 			li{
 				list-style: none;
 				width: 100%;
-				height: 20px;
+				height: 30px;
 				line-height: 20px;
 				span{
 					display: inline-block;
@@ -163,12 +201,12 @@
 		.saveButton{
 			width: 200px;
 			float: right;
-			margin: 100px 20px 0 0;
+			margin: 40px 20px 30px 0;
 			input{
 				display: inline-block;
 				margin-left: 20px;
 				width: 80px;
-				height: 20px;
+				height: 25px;
 				font-size: 12px;
 				border: 0px;
 			};
@@ -181,5 +219,190 @@
 			}
 		}
 	}
+	div.saveOlapSource{
+		width: 200px;
+		float: right;
+		margin: 250px 20px 0 0;
+		input{
+			display: inline-block;
+			margin-left: 20px;
+			width: 80px;
+			height: 25px;
+			font-size: 12px;
+			border: 0px;
+		};
+		.cancleSave{
+			
+		}
+		.saveOlap{
+			background-color: #00679A;
+			color: #fff;
+		}
+	}
+	.column{
+		h3 {
+			display: inline-block;
+		}
+		input {
+			width:50px;
+			height: 20px;
+			margin-left: 15px;
+			text-align: center;
+			font-size: 12px;
+		}
+		input[type="button"] {
+			background-color: #00679A;
+			color: #fff;
+			height: 26px;
+			border-radius: 3px;
+			border: none;
+			cursor: pointer;
+		}
+	}
 }
+.olapBrowse {
+	margin-top:20px;
+	.btn{
+		cursor: pointer;
+	    background: #2e5f94;
+	    border: none;
+	    outline: none;
+	    border-radius: 3px;
+	    color: #fff;
+	    text-align: center;
+	    width: 60px;
+	    height: 25px;
+	    display: inline-block;
+	}
+	.index span{
+	    float: left;
+	    line-height: 28px;
+	}
+	button.backBtn{
+		height: 25px;
+		border: none;
+		background-color: #2e5f94;
+		color: #fff;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	.setFilePath{
+	    width: 160px;
+	    height: 25px;
+	    box-sizing: border-box;
+	    border: 1px solid #d8d8d8;
+	    float: left;
+	    margin: 0 25px 0px 25px;
+	    line-height: 25px;
+	    text-indent: 5px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	.showFile{
+	    margin-left: 83px;
+	}
+	.fileLists{
+	    width: 100%;
+	    height: 190px;
+	    box-sizing: border-box;
+	    border: 1px solid #ccc;
+	    margin-top: 20px;
+	}
+	.fileListsTitle{
+	    width: 100%;
+	    height: 40px;
+	    line-height: 40px;
+	    background: #999;
+	    color: #fff;
+	}
+	.fileListsTitle span:nth-child(1), .fileLists li span:nth-child(1){
+	    width: 200px;
+	    float: left;
+	    text-indent: 5px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	.fileListsTitle span:nth-child(2), .fileLists li span:nth-child(2){
+	    float: left;
+	    overflow: hidden;
+	    text-indent: 5px;
+	    width: 100px;
+	}
+	.fileLists ul{
+	    width: 100%;
+	    height: 148px;
+	    -webkit-padding-start: 0px;
+	    overflow-y: auto;
+	}
+	.fileLists ul li{
+	    height: 28px;
+	    display: block;
+	    line-height: 28px;
+	    cursor: pointer;
+	}
 
+	.fileLists ul li:nth-child(even){
+	    background: #f2f2f2;
+	}
+	.fileLists ul li:nth-child(odd){
+	    background: #ffffff;
+	}
+	.fileLists ul li:hover{
+	    background: #d3e6f6;
+	}
+	.fileName{
+	    overflow: hidden;
+	    margin-top: 20px;
+	}
+	.fileName span{
+	    float: left;
+	    line-height: 28px;
+	}
+	.setFileName{
+	    width: 160px;
+	    height: 28px;
+	    line-height: 28px;
+	    float: right;
+	    margin-right: 15px;
+	    box-sizing: border-box;
+	    border: 1px solid #ccc;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    text-indent: 5px;
+	}
+	.fileName select{
+	    width: 80px;
+	    height: 25px;
+	    float: right;
+	    font-size: 12px;
+	}
+	div.model-btn{
+		width: 250px;
+		float: right;
+		margin: 360px 10px 0 0;
+		.cancle {
+		    color: #a6a6a6;		    
+		    background: #c9c9c9;
+		}
+		input{
+			text-align: center;
+			display: inline-block;
+			margin-left: 30px;
+			width: 80px;
+			height: 25px;
+			font-size: 12px;
+			cursor: pointer;
+		    border: none;
+		    outline: none;
+		    border-radius: 3px;
+		    line-height: 25px;
+		};
+		.cancle:hover, .cancle:focus:hover {
+		    background: #a6a6a6;
+		    color: #fff;
+		}
+	}
+}

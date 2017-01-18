@@ -34,19 +34,18 @@ export default function bar(option) {
       'colName': 'Value'
     }]
   };
-  let htmlObject = option.node[0].parentNode.parentNode.className;
 
-  option.chartData ? configData = option.chartData : configData = {
+  configData = option.chartData ? option.chartData : {
     canvas: option.node[0],
-    width: option.node[0].clientWidth - 1,
-    height: 400,
+    width: option.node[0].clientWidth - 10,
+    height: 350,
+    orthoAxisTitle: '',
     orientation: 'vertical',
     orthoAxisGrid: true,
     baseAxisGrid: false,
     crosstabMode: true,
     axisLabel_font: 'normal 10px "Open Sans"',
-    colors: '#005CA7',
-    selectable: true,
+    colors: ['#005CA7'],
     hoverable: false,
     valuesVisible: false,
     animate: false,
@@ -56,7 +55,7 @@ export default function bar(option) {
     barOrthoSizeMin: '',
     clickable: false,
     dataSource: '',
-    htmlObject: htmlObject,
+    htmlObject: option.node[0].parentNode.parentNode.className,
     executeAtStart: true,
     compatVersion: 2,
     seriesInRows: false,
@@ -66,22 +65,24 @@ export default function bar(option) {
     plotFrameVisible: false,
     orthoAxisTicks: false,
     orthoAxisTitleAlign: 'left',
-    name: ''
+    titleLoc: 'left',
+    iconType: 'bar',
+    export: true,
+    name: 'barChart'
   };
   new pvc.BarChart(configData)
   .setData(relational)
   .render();
 
   let dataTitle = {
-    type: 'ComponentscccBarChart',
-    typeDesc: 'CCC Bar Chart',
-    parent: 'UnIqEiD',
-    meta_cdwSupport: true
+    'type': 'ComponentscccBarChart',
+    'typeDesc': 'CCC Bar Chart',
+    'parent': 'UnIqEiD',
+    'meta_cdwSupport': true
   };
   let chartConfig = {
     configData: configData,
     dataTitle: dataTitle
-    // dataSource: relational
   };
 
   return chartConfig;

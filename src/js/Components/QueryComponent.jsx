@@ -13,7 +13,7 @@ export default class QueryComponent extends baseComponent {
           '<div class = "widgetQuery">' +
             '<input type = "text">' +
           '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">query</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );

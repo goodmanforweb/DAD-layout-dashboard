@@ -13,11 +13,11 @@ class ThreeLevelMap extends OlapChartsRender {
     super(props);
   }
 
-  render() {
+  render(node) {
     var dataSum = this.Privence_data_sum(this.rawdata);
     var options = {
       type: 'chinamap',
-      canvas: '.columnOne',
+      canvas: node[0],
       width: '800',
       height: '800',
       colors: ['#5AB1EF', '#B6A2DE', '#2EC7C9', '#FFB980', '#97B552', '#D87A80']

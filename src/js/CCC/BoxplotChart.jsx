@@ -7,6 +7,7 @@ new pvc.BoxplotChart({
     canvas: 'cccBoxExample3',
     width:  node[0].clientWidth,
     height: 400,
+    orthoAxisTitle: '',
 
     // Main plot
     boxSizeMax: 20,
@@ -40,6 +41,7 @@ new pvc.BoxplotChart({
     htmlObject: htmlObject,
     executeAtStart: true,
     compatVersion: 2,
+    crosstabMode: true,
     seriesInRows: false,
     clickAction: '',
     listeners: [],

@@ -8,7 +8,7 @@ const Sprites = require('postcss-sprites');
 
 module.exports = function() {
     return [
-      Autoprefixer, Precss, Center, Circle
+      Autoprefixer, Precss, Center, Circle,
      //  Sprites({
      //    retina: true,//支持retina，可以实现合并不同比例图片
 	    // verbose: true,

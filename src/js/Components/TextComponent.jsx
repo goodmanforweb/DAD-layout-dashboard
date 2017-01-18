@@ -16,7 +16,7 @@ export default class TextComponent extends baseComponent {
             '</textarea>' +
           '</div>' +
         '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">text</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );

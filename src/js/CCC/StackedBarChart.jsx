@@ -52,6 +52,7 @@ export default function stackedBar(option) {
     canvas: option.node[0],
     width: option.node[0].clientWidth - 1,
     height: 400,
+    orthoAxisTitle: '',
     // Data source
     crosstabMode: false,
     // Main plot

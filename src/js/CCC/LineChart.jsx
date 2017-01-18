@@ -51,44 +51,30 @@ export default function line(option) {
   option.chartData ? configData = option.chartData : configData = {
     canvas: option.node[0],
     width: option.node[0].clientWidth - 1,
-    height: 400,
-    // Data source
-    crosstabMode: false,
-    // Data
+    height: 350,
+    orthoAxisTitle: '',
+    orientation: 'vertical',
+    orthoAxisGrid: true,
+    baseAxisGrid: false,
     timeSeries: true,
-    // Main plot
-    line_interpolate: 'monotone',
-    area_interpolate: 'monotone',
-    // Cartesian axes
-    axisGrid: true,
-    axisGrid_strokeStyle: '#F7F8F9',
-    axisOffset: 0,
-    orthoAxisLabel_font: 'normal 8px "Open Sans"',
-    baseAxisLabel_font: 'normal 9px "Open Sans"',
-    baseAxisLabel_textAngle: -0.8,
-    baseAxisLabel_textAlign: 'right',
-    baseAxisScale_dateTickFormat: '%Y/%m/%d',
-    baseAxisScale_dateTickPrecision: pvc.time.intervals.w,
-    // Panels
-    title: 'Time Series Line Chart',
-    titleFont: 'lighter 20px "Open Sans"',
-    titleMargins: '0 0 5 0',
-    legend: true,
-    legendFont: 'normal 11px "Open Sans"',
-    // Chart/Interaction
+    barOrthoSizeMin: '',
+    nullInterpolationMode: 'none',
+    // colors: ['#005CA7'],
+    line_interpolate: 'linear',
+    dotsVisible: false,
+    areasVisible: false,
+    hoverable: false,
+    valuesVisible: false,
     animate: false,
-    selectable: true,
-    hoverable: true,
-    // Color axes
-    colors: [
-      '#005CA7', '#FFC20F', '#333333'
-    ],
-    tooltip: '',
+    legend: true,
+    legendPosition: 'left',
+    stacked: false,
     clickable: false,
     dataSource: '',
     htmlObject: htmlObject,
     executeAtStart: true,
     compatVersion: 2,
+    crosstabMode: true,
     seriesInRows: false,
     clickAction: '',
     listeners: [],
@@ -96,7 +82,7 @@ export default function line(option) {
     plotFrameVisible: false,
     orthoAxisTicks: false,
     orthoAxisTitleAlign: 'left',
-    name: ''
+    name: 'lineChart'
   };
 
   new pvc.LineChart(configData)
@@ -104,8 +90,8 @@ export default function line(option) {
   .render();
   let dataTitle = {
     id: '',
-    type: 'ComponentscccBarChart',
-    typeDesc: 'CCC Bar Chart',
+    type: 'ComponentscccLineChart',
+    typeDesc: 'CCC Line Chart',
     parent: 'UnIqEiD'
   };
   let chartConfig = {

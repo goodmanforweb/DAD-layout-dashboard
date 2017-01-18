@@ -14,7 +14,7 @@ export default class CheckBoxComponent extends baseComponent {
             '<div class = "widgetCheckBox">' +
               '<input type = "checkbox">name' +
             '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">Check</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );

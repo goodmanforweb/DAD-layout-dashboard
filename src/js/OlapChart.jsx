@@ -391,6 +391,7 @@ class OlapChartsRender {
       return dataAll;
     }
   };
+
   Privence_data_sum(e) {
     var data = this.myself_process_data_tree({data: e});
     var summeta;

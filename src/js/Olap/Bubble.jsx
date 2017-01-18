@@ -11,11 +11,11 @@ class Bobble extends OlapChartsRender {
     super(props);
   }
 
-  render() {
+  render(node) {
     var options = {
-        canvas: '.columnOne',
-        width: '800',
-        height: '800',
+        canvas: node[0],
+        width: '500',
+        height: '400',
         colors: ['#5AB1EF', '#B6A2DE', '#2EC7C9', '#FFB980', '#97B552', '#D87A80']
       },
       data = this.myself_process_data_tree({data: this.rawdata}),

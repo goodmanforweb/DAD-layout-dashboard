@@ -9,6 +9,7 @@ class DoardMenu extends React.Component {
 
   constructor(props) {
     super(props);
+    this.foldNum = 1;
   }
 
   componentDidMount() {
@@ -19,9 +20,8 @@ class DoardMenu extends React.Component {
     let data = $(ev.target)[0].attributes;
 
     for (let i = 0;i < data.length;i++) {
-      if (data[i].name === 'data-type') {
-        ev.dataTransfer.setData('Text', data[i].nodeValue);
-      }
+      data[i].name === 'data-type' ?
+        ev.dataTransfer.setData('Text', data[i].nodeValue) : null;
     }
   }
 
@@ -99,7 +99,7 @@ class DoardMenu extends React.Component {
             </div>
             <div className = "chartContent Content">
                 <div className = "menuItemBox">
-                    <span className = "menuItem chart1"
+                    <span className = "menuItem bar"
                         data-type = "barChart"
                         draggable = "true"
                         onDragStart = {this.drag}/>
@@ -108,7 +108,7 @@ class DoardMenu extends React.Component {
                     </span>
                 </div>
                 <div className = "menuItemBox">
-                    <span className = "menuItem chart2"
+                    <span className = "menuItem stack"
                         data-type = "stackedBarChart"
                         draggable = "true"
                         onDragStart = {this.drag}/>
@@ -117,7 +117,7 @@ class DoardMenu extends React.Component {
                     </span>
                 </div>
                 <div className = "menuItemBox">
-                    <span className = "menuItem chart3"
+                    <span className = "menuItem line"
                         data-type = "lineChart"
                         draggable = "true"
                         onDragStart = {this.drag}/>
@@ -126,7 +126,7 @@ class DoardMenu extends React.Component {
                     </span>
                 </div>
                 <div className = "menuItemBox">
-                    <span className = "menuItem chart4"
+                    <span className = "menuItem lineBar"
                         data-type = "lineBarChart"
                         draggable = "true"
                         onDragStart = {this.drag}/>
@@ -135,7 +135,7 @@ class DoardMenu extends React.Component {
                     </span>
                 </div>
                 <div className = "menuItemBox">
-                    <span className = "menuItem chart5"
+                    <span className = "menuItem bullet"
                         data-type = "bulletChart"
                         draggable = "true"
                         onDragStart = {this.drag}/>
@@ -145,7 +145,7 @@ class DoardMenu extends React.Component {
                 </div>
             </div>
         </div>
-        <div className = "reportGroup">
+        <div className = "widgetGroup">
             <div className = "reportLabel label">
                 <span className="open" onClick = {this.toggle}/>
                 <span onClick = {this.toggle}>组件</span>
@@ -180,13 +180,12 @@ class DoardMenu extends React.Component {
                 </div>
             </div>
         </div>
-
-        <div className = "reportGroup">
+        <div className = "componentGroup">
             <div className = "reportLabel label">
                 <span className="open" onClick = {this.toggle}/>
                 <span onClick = {this.toggle}>控件</span>
             </div>
-            <div className = "controlContent Content">
+            <div className = "controlContent lastContent">
                 <div className = "menuItemBox">
                     <span className = "menuItem control1"
                         data-type = "checkBox"
@@ -226,7 +225,7 @@ class DoardMenu extends React.Component {
             </div>
         </div>
       </div>
-	);
+    );
   }
 }
 export default DoardMenu;

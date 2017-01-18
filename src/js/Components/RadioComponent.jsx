@@ -15,7 +15,7 @@ export default class RadioComponent extends baseComponent {
             '<input type = "radio">name' +
           '</div>' +
         '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">radio</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );

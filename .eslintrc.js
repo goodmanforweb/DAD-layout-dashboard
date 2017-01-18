@@ -45,7 +45,6 @@ module.exports = {
     "rules": {
     "block-scoped-var": 0,
     "brace-style": [2, "stroustrup"],
-    // "camelcase": [1, { "properties": "always" }],
     "comma-dangle": [2, "never"],
     "comma-spacing": [2, { "before": false, "after": true }],
     "comma-style": [2, "last"],
@@ -124,7 +123,7 @@ module.exports = {
     "no-native-reassign": 2,
     "no-negated-in-lhs": 2,
     "no-nested-ternary": 0,
-    "no-new": 2,
+    "no-new": 0,
     "no-new-func": 2,
     "no-new-object": 2,
     "no-new-require": 2,

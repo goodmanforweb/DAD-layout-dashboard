@@ -7,7 +7,7 @@ import Bubble from './Olap/Bubble';
 import WorldMap from './Olap/WorldMap';
 
 // choose olap chart type.
-export default function switchOlapChart(option = 'threeLevelMap') {
+export default function switchOlapChart(options) {
   let chartType = {
     barChart() {
       console.log('bar');
@@ -18,24 +18,24 @@ export default function switchOlapChart(option = 'threeLevelMap') {
     bubbleChart() {
       let bobbleChart = new Bubble();
 
-      bobbleChart.render();
+      bobbleChart.render(options.node);
     },
     treesLink() {
       let tree = new TreesLink();
 
-      tree.render();
+      tree.render(options.node);
     },
     threeLevelMap() {
       let map = new ThreeLevelMap();
 
-      map.render();
+      map.render(options.node);
     },
     worldMap() {
       let map = new WorldMap();
 
-      map.render();
+      map.render(options.node);
     }
   };
 
-  return chartType[option] ? chartType[option]() : null;
+  return chartType[options.type] ? chartType[options.type]() : chartType['bubbleChart']();
 }

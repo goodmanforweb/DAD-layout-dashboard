@@ -58,6 +58,7 @@ new pvc.WaterfallChart({
     plotFrameVisible: false,
     orthoAxisTicks: false,
     orthoAxisTitleAlign: 'left',
+    orthoAxisTitle: '',
     name: ''
 })
 .setData(testWaterfall1)

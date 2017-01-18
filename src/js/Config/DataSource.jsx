@@ -2,6 +2,7 @@
  * Created by Fine on 2016/11/8.
  */
 import $ from 'jquery';
+import 'whatwg-fetch';
 
 // new data source component
 export default class DataSource {
@@ -18,15 +19,13 @@ export default class DataSource {
       '<div><label>多维数据集</label><select class="dataCubes"></select></div>' +
       '<div><label class="sqlQuery">Mdx查询</label><textarea rows="10" class="sqlStatement">' +
       '</textarea></div>' +
-      '<div class="queryParam"><span>查询参数</span><ul>' +
+      '<div class="queryParam"><span>查询参数</span><ul class="queryParamList">' +
       '<li><span><input type="checkbox" /></span><span>变量名</span><span>默认值</span></li>' +
-      '<li><span><input type="checkbox" /></span><span>parameter1</span><span>地区</span></li>' +
-      '<li><span><input type="checkbox" /></span><span>parameter2 </span><span>销售额</span></li>' +
       '</ul><span class="rightNowQuery">立即查询</span></div>' +
-      '<div><span>输出列</span><ul>' +
+      '<div class="responseParam"><span>输出列</span><ul>' +
       '<li><span><input type="checkbox" /></span><span>序列号</span><span>列名</span></li>' +
-      '<li><span><input type="checkbox" /></span><span>0</span><span>地区</span></li>' +
-      '<li><span><input type="checkbox" /></span><span>0</span><span>销售额</span></li>' +
+      '<li><span><input type="checkbox" /></span><span>0</span><input type="text"/></li>' +
+      '<li><span><input type="checkbox" /></span><span>0</span><input type="text"/></li>' +
       '</ul></div>' +
       '<div class="saveButton"><input type="button" class="cancleCommit" value="取消"/>' +
       '<input type="button" class="saveDataSource" value="保存"/></div>' +
@@ -46,8 +45,8 @@ export default class DataSource {
     return data;
   }
 
-  bindConfig() {
-    $('.configSection').append(this.template());
+  bindConfig(node) {
+    $('.' + node + ' .configSection').append(this.template());
     $('input.cancleCommit').on('click', ()=>{
       $('.newquery').addClass('hide');
       $('.titleName').removeClass('hide');
@@ -79,34 +78,42 @@ export default class DataSource {
           $('.newquery').removeClass('hide');
           $('.dataSourceConfig').removeClass('hide');
           $('.propertyConfig').addClass('hide');
-          $.ajax({
-            type: 'get',
-            url: '/xdatainsight/plugin/data-access/api/connection/list',
-            data: '',
-            success(data) {
-              this.databaseConnections = data;
-              let nodes = null;
 
-              data.databaseConnections.map(d=>{
-                nodes += '<option value="' + d.name + '">' + d.name + '</option>';
-              });
-              $('select.sourceConnect').html(nodes);
-            }
-          });
-          $.ajax({
-            type: 'get',
-            url: '/xdatainsight/plugin/saiku/api/admin/discover',
-            data: '',
-            success(data) {
-              this.dataCubes = data;
-              let nodes = null;
+          fetch('/xdatainsight/plugin/saiku/api/admin/discover', {
+            credentials: 'same-origin',
+            headers: new Headers({
+              'Accept': 'application/json'
+            })
+          })
+          .then(response => response.json())
+          .then(json => {
+            this.dataCubes = json;
+            let nodes = null;
 
-              data.map(d=>{
-                nodes += '<option value="' + d.name + '">' + d.name + '</option>';
-              });
-              $('select.dataCubes').html(nodes);
-            }
-          });
+            json.map(d => {
+              nodes += '<option value="' + d.name + '">' + d.name + '</option>';
+            });
+            $('select.dataCubes').html(nodes);
+          })
+          .catch(ex => console.log('parsing failed', ex));
+
+          fetch('/xdatainsight/plugin/data-access/api/connection/list', {
+            credentials: 'same-origin',
+            headers: new Headers({
+              'Accept': 'application/json'
+            })
+          })
+          .then(response => response.json())
+          .then(json => {
+            this.databaseConnections = json;
+            let nodes = null;
+
+            json.databaseConnections.map(d=>{
+              nodes += '<option value="' + d.name + '">' + d.name + '</option>';
+            });
+            $('select.sourceConnect').html(nodes);
+          })
+          .catch(ex => console.log('parsing failed', ex));
         }
       }
     });

@@ -1,6 +1,6 @@
 
 'use strict';
-const postcssConfig = require('./postcss');
+let postcssConfig = require('./postcss');
 //Initialization
 const webpack = require('webpack');
 
@@ -41,11 +41,11 @@ module.exports = {
         outputPath: BUILD, // The path should be an absolute path to your build destination.
         proxy: {
                 '/xdatainsight/*': {
-                    target: 'http://',
+                    target: 'http://172.27.9.3:41116/',
                     secure: false,
-                    auth: 'admin:password'
+                    auth: 'admin:szl4116'
                 }   
-            }
+        }
     },
     entry: {
         index : SRC

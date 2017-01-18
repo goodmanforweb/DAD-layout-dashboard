@@ -10,6 +10,7 @@ import App from './js/Views/App';
 
 render(
   <Router history = {browserHistory}>
+    <Route path = "/xdatainsight/dashboard/index.html" component={App} />
 	<Route path = "/" component={App} />
   </Router>,
   document.querySelector('#xdtDashboard')

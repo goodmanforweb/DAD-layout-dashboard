@@ -14,7 +14,7 @@ export default class DateComponent extends baseComponent {
           '<div class = "widgetDate">' +
             '<input type = "date">' +
           '</div>' +
-        '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+        '<div class = "widgetConfig config_' + randomNum + '">Date</div>' +
         '<div class = "widgetAction"></div>' +
       '</div>'
     );
