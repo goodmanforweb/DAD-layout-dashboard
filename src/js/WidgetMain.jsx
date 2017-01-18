@@ -5,7 +5,7 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 import d3 from './public/d3';
-// import $ from 'jquery';
+import $ from 'jquery';
 import 'whatwg-fetch';
 
 import WidgetPreview from './WidgetPreview';
