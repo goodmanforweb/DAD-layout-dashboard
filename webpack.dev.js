@@ -41,9 +41,9 @@ module.exports = {
         outputPath: BUILD, // The path should be an absolute path to your build destination.
         proxy: {
                 '/xdatainsight/*': {
-                    target: 'http://172.27.9.3:41116/',
+                    target: 'http://172.0.0.0:8/',
                     secure: false,
-                    auth: 'admin:szl4116'
+                    auth: 'admin:123'
                 }   
         }
     },
