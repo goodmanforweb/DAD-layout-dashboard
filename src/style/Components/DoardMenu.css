@@ -5,7 +5,7 @@
 	height: 100%;
 	float: left;
 	background:#F3F3F3;
-	overflow-x: hidden;
+	overflow: hidden;
 	z-index: 10;
 	position: fixed;
 	top: 0;
@@ -13,6 +13,18 @@
 	border-right: 1px solid #D3D3D3;
 	font-family: "microsoft yahei";
 	transition: all .3s linear;
+	.foldGroup {
+		text-align: center;
+		.arrowFold {
+			display: inline-block;
+			width: 58px;
+			height: 58px;
+			text-align: center;
+			line-height: 58px;
+			cursor: pointer;
+			font-size: 32px;
+		}
+	}
 }
 .menuItem{
 	margin:10px 15px 0px 15px;
@@ -42,12 +54,20 @@
 }
 .Content{
 	overflow: hidden;
+	transition-property: height;
+	transition-duration: 0.4s;
 	border-bottom:1px solid #B4B4B4;
 	padding-left:34px;
 }
 .lastContent{
 	overflow: hidden;
+	transition-property: height;
+	transition-duration: 0.4s;
 	padding-left:34px;
+	padding-bottom: 100px;
+}
+.foldGroup{
+	border-top:1px solid #B4B4B4;
 }
 /*set height*/
 .layoutContent, .reportContent, .componentContent{
@@ -78,6 +98,7 @@
 	display: inline;
 	padding-bottom:20px;
 	font-size: 16px;
+	user-select: none;
 }
 .menuItemBox>span:nth-child(2){
 	display: inline-block;

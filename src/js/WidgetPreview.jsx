@@ -207,7 +207,6 @@ class WidgetPreview extends Component {
     });
     parameter.properties.push({name: 'name', value: e.target.value});
     data.push(parameter);
-    // console.log(data);
     this.props.saveData(data);
   }
 
@@ -252,6 +251,7 @@ class WidgetPreview extends Component {
   // templates of grid layout
   layoutDom(type = 'gridOne') {
     let randomNum = new Date().getTime();
+    let configHeight = $(window).height() - 75 + 'px';
     let domType = {
       gridOne() {
         return (
@@ -259,7 +259,8 @@ class WidgetPreview extends Component {
             '<div class = "widgetContainer container_' + randomNum + '">' +
               '<div class = "columnOne columnOne_' + randomNum + '"></div>' +
             '</div>' +
-            '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+            '<div class = "widgetConfig config_' + randomNum +
+            '"style="height:' + configHeight + '"></div>' +
             '<div class = "widgetAction">' +
             '<span class="configAction"><i class="config" title="config"></i>' +
               '<i class="move" title="move"></i>' +
@@ -275,7 +276,8 @@ class WidgetPreview extends Component {
               '<div class = "columnTwo columnT_' + randomNum + '"></div>' +
               '<div class = "columnTwo columnTwo_' + randomNum + '"></div>' +
             '</div>' +
-            '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+            '<div class = "widgetConfig config_' + randomNum +
+            '"style="height:' + configHeight + '"></div>' +
             '<div class = "widgetAction">' +
             '<span class="configAction"><i class="config" title="config"></i>' +
               '<i class="move" title="move"></i>' +
@@ -292,7 +294,8 @@ class WidgetPreview extends Component {
               '<div class = "columnThree columnThr_' + randomNum + '"></div>' +
               '<div class = "columnThree columnThree_' + randomNum + '"></div>' +
             '</div>' +
-            '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+            '<div class = "widgetConfig config_' + randomNum +
+            '"style="height:' + configHeight + '"></div>' +
             '<div class = "widgetAction">' +
               '<span class="configAction"><i class="config" title="config"></i>' +
               '<i class="move" title="move"></i>' +
@@ -306,7 +309,8 @@ class WidgetPreview extends Component {
           '<div class = "widgetChild">' +
             '<div class = "widgetContainer container_' + randomNum + '">' +
             '</div>' +
-            '<div class = "widgetConfig config_' + randomNum + '"></div>' +
+            '<div class = "widgetConfig config_' + randomNum +
+            '"style="height:' + configHeight + '"></div>' +
             '<div class = "chartAction">' +
               '<span class = "chartTitle"><i class="iconType">chartName</i></span>' +
               '<span class="configAction"><i class="config" title="config"></i>' +

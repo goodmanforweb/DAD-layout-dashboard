@@ -2,22 +2,16 @@
  * Created by Fine on 2016/9/25.
  */
 import React from 'react';
-import $ from 'jquery';
 import '../style/Components/DoardMenu';
 
 class DoardMenu extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.foldNum = 1;
-  }
 
   componentDidMount() {
     // this.props.setHeight('.boardMenu', 0);
   }
 
   drag(ev) {
-    let data = $(ev.target)[0].attributes;
+    let data = ev.target.attributes;
 
     for (let i = 0;i < data.length;i++) {
       data[i].name === 'data-type' ?
